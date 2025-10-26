@@ -1,143 +1,166 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeka AI</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeka AI</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- 🌐 Dil seçici -->
-    <div style="position: absolute; top: 15px; right: 15px;">
-        <select id="languageSelector" onchange="changeLanguage()">
-            <option value="az" selected>🇦🇿 AZ</option>
-            <option value="en">🇬🇧 EN</option>
-            <option value="tr">🇹🇷 TR</option>
-        </select>
-    </div>
+  <!-- 🌐 Dil seçici -->
+  <div style="position: absolute; top: 15px; right: 15px;">
+    <select id="languageSelector" onchange="changeLanguage()">
+      <option value="az" selected>🇦🇿 AZ</option>
+      <option value="en">🇬🇧 EN</option>
+      <option value="tr">🇹🇷 TR</option>
+    </select>
+  </div>
 
-    <!-- yenilenmis h2 -->
-    <div class="container">
-        <h1 id="greeting">Zeka AI</h1>
-        <h2 id="subtitle">Müstəqil AI tövsiyə sistemi 🤖</h2>
+  <div class="container">
+    <h1 id="greeting">Zeka AI</h1>
+    <h2 id="subtitle">Müstəqil AI tövsiyə sistemi 🤖</h2>
 
-        <input type="text" id="userInput" placeholder="Bir sual yazın...">
-        <button id="askButton" onclick="getAdvice()">Soruş</button>
+    <input type="text" id="userInput" placeholder="Bir sual yazın..." />
+    <button id="askButton" onclick="getAdvice()">Soruş</button>
 
-        <div class="result" id="resultBox"></div>
-    </div>
+    <div class="result" id="resultBox"></div>
+  </div>
 
-    <div class="footer" id="footerText">
-        © 2025 <span>Zeka AI</span> — Ağıllı gələcək üçün
-    </div>
+  <div class="footer" id="footerText">
+    © 2025 <span>Zeka AI</span> — Ağıllı gələcək üçün
+  </div>
 
-    <a href="mailto:info@zeka.ai" class="email-bubble">✉️</a>
+  <a href="mailto:info@zeka.ai" class="email-bubble">✉️</a>
 
-    <script>
-        // 🌐 Tərcümə məlumatları
-        const translations = {
-            az: {
-                subtitle: "Müstəqil AI tövsiyə sistemi 🤖",
-                placeholder: "Bir sual yazın...",
-                askButton: "Soruş",
-                footer: "© 2025 Zeka AI — Ağıllı gələcək üçün",
-                emptyInput: "Zəhmət olmasa bir sual yazın 💬",
-                demoReply: "Bu suala cavab hazırda demo rejimindədir. 😊"
-            },
-            en: {
-                subtitle: "Independent AI recommendation system 🤖",
-                placeholder: "Type your question...",
-                askButton: "Ask",
-                footer: "© 2025 Zeka AI — For a smarter future",
-                emptyInput: "Please type a question 💬",
-                demoReply: "This answer is currently in demo mode. 😊"
-            },
-            tr: {
-                subtitle: "Bağımsız AI öneri sistemi 🤖",
-                placeholder: "Bir soru yazın...",
-                askButton: "Sor",
-                footer: "© 2025 Zeka AI — Akıllı bir gelecek için",
-                emptyInput: "Lütfen bir soru yazın 💬",
-                demoReply: "Bu soru şu anda demo modundadır. 😊"
-            }
-        };
+  <script>
+    // 🌐 Tərcümə məlumatları
+    const translations = {
+      az: {
+        subtitle: "Müstəqil AI tövsiyə sistemi 🤖",
+        placeholder: "Bir sual yazın...",
+        askButton: "Soruş",
+        footer: "© 2025 Zeka AI — Ağıllı gələcək üçün",
+        emptyInput: "Zəhmət olmasa bir sual yazın 💬",
+        demoReply: "Bu suala cavab hazırda demo rejimindədir. 😊",
+        suggestions: {
+          design:
+            "💡 Bu mövzu üçün ən uyğun AI: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a> və ya <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> (şəkil/dizayn yaradılması).",
+          code:
+            "🧠 Bu mövzu üçün ən uyğun AI: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> və ya <a href='https://claude.ai' target='_blank'><strong>Claude</strong></a> (proqramlaşdırma və kod yazmaq üçün).",
+          chat:
+            "💬 Bu mövzu üçün ən uyğun AI: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> (ünsiyyət və ideya mübadiləsi üçün).",
+          image:
+            "🎨 Bu mövzu üçün ən uyğun AI: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a>, <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> və ya <a href='https://leonardo.ai' target='_blank'><strong>Leonardo AI</strong></a>.",
+          search:
+            "🔍 Bu mövzu üçün ən uyğun AI: <a href='https://gemini.google.com' target='_blank'><strong>Gemini</strong></a> (Google ekosistemi və məlumat axtarışı üçün).",
+          none:
+            "🤔 Bu mövzuya uyğun AI tapılmadı. Zəhmət olmasa daha dəqiq yazın.",
+        },
+      },
+      en: {
+        subtitle: "Independent AI recommendation system 🤖",
+        placeholder: "Type your question...",
+        askButton: "Ask",
+        footer: "© 2025 Zeka AI — For a smarter future",
+        emptyInput: "Please type a question 💬",
+        demoReply: "This answer is currently in demo mode. 😊",
+        suggestions: {
+          design:
+            "💡 Best AI for this topic: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a> or <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> (for design and image generation).",
+          code:
+            "🧠 Best AI for this topic: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> or <a href='https://claude.ai' target='_blank'><strong>Claude</strong></a> (for programming and coding).",
+          chat:
+            "💬 Best AI for this topic: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> (for conversation and idea sharing).",
+          image:
+            "🎨 Best AI for this topic: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a>, <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> or <a href='https://leonardo.ai' target='_blank'><strong>Leonardo AI</strong></a>.",
+          search:
+            "🔍 Best AI for this topic: <a href='https://gemini.google.com' target='_blank'><strong>Gemini</strong></a> (for Google ecosystem and research).",
+          none: "🤔 No matching AI found. Please try to be more specific.",
+        },
+      },
+      tr: {
+        subtitle: "Bağımsız AI öneri sistemi 🤖",
+        placeholder: "Bir soru yazın...",
+        askButton: "Sor",
+        footer: "© 2025 Zeka AI — Akıllı bir gelecek için",
+        emptyInput: "Lütfen bir soru yazın 💬",
+        demoReply: "Bu soru şu anda demo modundadır. 😊",
+        suggestions: {
+          design:
+            "💡 Bu konu için en uygun yapay zeka: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a> veya <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> (tasarım ve görsel üretimi için).",
+          code:
+            "🧠 Bu konu için en uygun yapay zeka: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> veya <a href='https://claude.ai' target='_blank'><strong>Claude</strong></a> (programlama ve kodlama için).",
+          chat:
+            "💬 Bu konu için en uygun yapay zeka: <a href='https://chat.openai.com' target='_blank'><strong>ChatGPT</strong></a> (sohbet ve fikir paylaşımı için).",
+          image:
+            "🎨 Bu konu için en uygun yapay zeka: <a href='https://www.midjourney.com' target='_blank'><strong>Midjourney</strong></a>, <a href='https://openai.com/dall-e' target='_blank'><strong>DALL·E</strong></a> veya <a href='https://leonardo.ai' target='_blank'><strong>Leonardo AI</strong></a>.",
+          search:
+            "🔍 Bu konu için en uygun yapay zeka: <a href='https://gemini.google.com' target='_blank'><strong>Gemini</strong></a> (Google ekosistemi ve bilgi araştırması için).",
+          none:
+            "🤔 Bu konuya uygun yapay zeka bulunamadı. Lütfen daha net yazın.",
+        },
+      },
+    };
 
-        // 🌐 Dil dəyişmə funksiyası
-        function changeLanguage() {
-            const lang = document.getElementById("languageSelector").value;
-            const t = translations[lang];
+    // 🌐 Dil dəyişmə funksiyası
+    let currentLang = "az";
+    function changeLanguage() {
+      const lang = document.getElementById("languageSelector").value;
+      const t = translations[lang];
+      currentLang = lang;
 
-            document.getElementById("subtitle").innerText = t.subtitle;
-            document.getElementById("userInput").placeholder = t.placeholder;
-            document.getElementById("askButton").innerText = t.askButton;
-            document.getElementById("footerText").innerHTML = t.footer;
-            currentLang = lang;
+      document.getElementById("subtitle").innerText = t.subtitle;
+      document.getElementById("userInput").placeholder = t.placeholder;
+      document.getElementById("askButton").innerText = t.askButton;
+      document.getElementById("footerText").innerHTML = t.footer;
+    }
+
+    // ⏰ Vaxta görə salam
+    const hour = new Date().getHours();
+    let greetingText = "Hər vaxtınız xeyir";
+    if (hour >= 5 && hour < 12) greetingText = "Sabahınız xeyir 🌅";
+    else if (hour >= 12 && hour < 18) greetingText = "Günortanız xeyir ☀️";
+    else if (hour >= 18 && hour < 24) greetingText = "Axşamınız xeyir 🌇";
+    else greetingText = "Hər vaxtınız xeyir 🌙";
+    document.getElementById("greeting").innerText = `${greetingText} bu Zeka AI-dır 🤖`;
+
+    // 🧠 Cavab və AI tövsiyə funksiyası
+    function getAdvice() {
+      const input = document.getElementById("userInput").value.trim().toLowerCase();
+      const resultBox = document.getElementById("resultBox");
+      const t = translations[currentLang];
+
+      if (input === "") {
+        resultBox.innerHTML = `<p>${t.emptyInput}</p>`;
+        return;
+      }
+
+      // Açar sözlər çoxdilli
+      const words = {
+        design: ["dizayn", "logo", "poster", "rəsm", "design", "art", "tasarım"],
+        code: ["proqram", "kod", "flask", "vscode", "python", "programlama", "coding"],
+        chat: ["söhbət", "danışıq", "müzakirə", "chat", "talk", "sohbet"],
+        image: ["şəkil", "foto", "image", "görsel", "artwork"],
+        search: ["google", "gemini", "axtarış", "araşdırma", "search", "bilgi"],
+      };
+
+      let aiType = "none";
+      for (const [type, keywords] of Object.entries(words)) {
+        if (keywords.some((word) => input.includes(word))) {
+          aiType = type;
+          break;
         }
+      }
 
-        // Varsayılan dil
-        let currentLang = "az";
+      resultBox.innerHTML = `
+        <p><strong>Zeka AI:</strong> ${t.demoReply}</p>
+        <p>${t.suggestions[aiType]}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
 
-        // ⏰ Vaxta görə salam
-        const hour = new Date().getHours();
-        let greetingText = "Hər vaxtınız xeyir";
-
-        if (hour >= 5 && hour < 12) greetingText = "Sabahınız xeyir 🌅";
-        else if (hour >= 12 && hour < 18) greetingText = "Günortanız xeyir ☀️";
-        else if (hour >= 18 && hour < 24) greetingText = "Axşamınız xeyir 🌇";
-        else greetingText = "Hər vaxtınız xeyir 🌙";
-
-        document.getElementById("greeting").innerText = `${greetingText} bu Zeka AI-dır 🤖`;
-
-        // 🧠 Cavab və AI tövsiyə funksiyası
-        function getAdvice() {
-            const input = document.getElementById("userInput").value.trim().toLowerCase();
-            const resultBox = document.getElementById("resultBox");
-            const t = translations[currentLang];
-
-            if (input === "") {
-                resultBox.innerHTML = `<p>${t.emptyInput}</p>`;
-                return;
-            }
-
-            // Mövzulara görə AI seçimləri
-            let aiSuggestion = "";
-
-            if (input.includes("dizayn") || input.includes("logo") || input.includes("poster") || input.includes("rəsm")) {
-                aiSuggestion = `💡 Bu mövzu üçün ən uyğun AI: 
-                <a href="https://www.midjourney.com" target="_blank"><strong>Midjourney</strong></a> 
-                və ya 
-                <a href="https://openai.com/dall-e" target="_blank"><strong>DALL·E</strong></a> (şəkil/dizayn yaradılması).`;
-            } 
-            else if (input.includes("proqram") || input.includes("kod") || input.includes("vscode") || input.includes("flask")) {
-                aiSuggestion = `🧠 Bu mövzu üçün ən uyğun AI: 
-                <a href="https://chat.openai.com" target="_blank"><strong>ChatGPT</strong></a> 
-                və ya 
-                <a href="https://claude.ai" target="_blank"><strong>Claude</strong></a> (proqramlaşdırma və kod yazmaq üçün).`;
-            } 
-            else if (input.includes("söhbət") || input.includes("müzakirə") || input.includes("suallar") || input.includes("danışıq")) {
-                aiSuggestion = `💬 Bu mövzu üçün ən uyğun AI: 
-                <a href="https://chat.openai.com" target="_blank"><strong>ChatGPT</strong></a> (ünsiyyət və ideya mübadiləsi üçün).`;
-            } 
-            else if (input.includes("şəkil") || input.includes("foto") || input.includes("art") || input.includes("image")) {
-                aiSuggestion = `🎨 Bu mövzu üçün ən uyğun AI: 
-                <a href="https://www.midjourney.com" target="_blank"><strong>Midjourney</strong></a>, 
-                <a href="https://openai.com/dall-e" target="_blank"><strong>DALL·E</strong></a> 
-                və ya 
-                <a href="https://leonardo.ai" target="_blank"><strong>Leonardo AI</strong></a>.`;
-            }
-            else if (input.includes("google") || input.includes("axtarış") || input.includes("araşdırma")) {
-                aiSuggestion = `🔍 Bu mövzu üçün ən uyğun AI: 
-                <a href="https://gemini.google.com" target="_blank"><strong>Gemini</strong></a> (Google ekosistemi, məlumat axtarışı və multimodal istifadə üçün).`;
-            } 
-            else {
-                aiSuggestion = "🤔 Bu mövzuya uyğun AI tapılmadı. Zəhmət olmasa daha dəqiq yazın.";
-            }
-
-            resultBox.innerHTML = `
-                <p><strong>Zeka AI:</strong> ${t.demoReply}</p>
-                <p>${aiSuggestion}</p>
-            `;
-        }
     </script>
 </body>
 </html>
