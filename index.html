@@ -54,16 +54,31 @@
             let aiSuggestion = "";
 
             if (input.includes("dizayn") || input.includes("logo") || input.includes("poster") || input.includes("rəsm")) {
-                aiSuggestion = "💡 Bu mövzu üçün ən uyğun AI: <strong>Midjourney</strong> və ya <strong>DALL·E</strong> (şəkil/dizayn yaradılması).";
+                aiSuggestion = `💡 Bu mövzu üçün ən uyğun AI: 
+                <a href="https://www.midjourney.com" target="_blank"><strong>Midjourney</strong></a> 
+                və ya 
+                <a href="https://openai.com/dall-e" target="_blank"><strong>DALL·E</strong></a> (şəkil/dizayn yaradılması).`;
             } 
             else if (input.includes("proqram") || input.includes("kod") || input.includes("vscode") || input.includes("flask")) {
-                aiSuggestion = "🧠 Bu mövzu üçün ən uyğun AI: <strong>ChatGPT</strong> və ya <strong>Claude</strong> (proqramlaşdırma və kod yazmaq üçün).";
+                aiSuggestion = `🧠 Bu mövzu üçün ən uyğun AI: 
+                <a href="https://chat.openai.com" target="_blank"><strong>ChatGPT</strong></a> 
+                və ya 
+                <a href="https://claude.ai" target="_blank"><strong>Claude</strong></a> (proqramlaşdırma və kod yazmaq üçün).`;
             } 
             else if (input.includes("söhbət") || input.includes("müzakirə") || input.includes("suallar") || input.includes("danışıq")) {
-                aiSuggestion = "💬 Bu mövzu üçün ən uyğun AI: <strong>ChatGPT</strong> (ünsiyyət və ideya mübadiləsi üçün).";
+                aiSuggestion = `💬 Bu mövzu üçün ən uyğun AI: 
+                <a href="https://chat.openai.com" target="_blank"><strong>ChatGPT</strong></a> (ünsiyyət və ideya mübadiləsi üçün).`;
             } 
-            else if (input.includes("şəkil") || input.includes("foto") || input.includes("art")) {
-                aiSuggestion = "🎨 Bu mövzu üçün ən uyğun AI: <strong>Midjourney</strong>, <strong>DALL·E</strong> və ya <strong>Leonardo AI</strong>.";
+            else if (input.includes("şəkil") || input.includes("foto") || input.includes("art") || input.includes("image")) {
+                aiSuggestion = `🎨 Bu mövzu üçün ən uyğun AI: 
+                <a href="https://www.midjourney.com" target="_blank"><strong>Midjourney</strong></a>, 
+                <a href="https://openai.com/dall-e" target="_blank"><strong>DALL·E</strong></a> 
+                və ya 
+                <a href="https://leonardo.ai" target="_blank"><strong>Leonardo AI</strong></a>.`;
+            }
+            else if (input.includes("google") || input.includes("gemini") || input.includes("axtarış") || input.includes("araşdırma")) {
+                aiSuggestion = `🔍 Bu mövzu üçün ən uyğun AI: 
+                <a href="https://gemini.google.com" target="_blank"><strong>Gemini</strong></a> (Google ekosistemi və məlumat axtarışı üçün).`;
             } 
             else {
                 aiSuggestion = "🤔 Bu mövzuya uyğun AI tapılmadı. Zəhmət olmasa daha dəqiq yazın.";
@@ -74,6 +89,9 @@
                 <p>${aiSuggestion}</p>
             `;
         }
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
