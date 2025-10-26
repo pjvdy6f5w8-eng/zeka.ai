@@ -143,19 +143,3 @@ button:hover {
   background-color: #a86eff;
   transform: scale(1.1);
 }
-
-/* 🧠 Placeholder (input içi mətn) üçün düzəlişlər */
-input::placeholder {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.9rem;
-  text-align: center;
-  line-height: 1.5;
-  white-space: normal;
-  opacity: 0.9;
-  transition: 0.3s ease;
-}
-
-/* Fokus zamanı placeholder bir az solğun görünsün */
-input:focus::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
