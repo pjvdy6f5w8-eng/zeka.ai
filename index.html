@@ -40,9 +40,9 @@
 
         document.getElementById("greeting").innerText = `${greetingText}, bu Zeka AI-dır 🤖`;
 
-        // 🧠 Sadə cavab funksiyası (demo məqsədi ilə)
+        // 🧠 Cavab və AI tövsiyə funksiyası
         function getAdvice() {
-            const input = document.getElementById("userInput").value.trim();
+            const input = document.getElementById("userInput").value.trim().toLowerCase();
             const resultBox = document.getElementById("resultBox");
 
             if (input === "") {
@@ -50,31 +50,30 @@
                 return;
             }
 
-            resultBox.innerHTML = `<p><strong>Zeka AI:</strong> Bu suala cavab hazırda demo rejimindədir. 😊</p>`;
+            // Mövzulara görə AI seçimləri
+            let aiSuggestion = "";
+
+            if (input.includes("dizayn") || input.includes("logo") || input.includes("poster") || input.includes("rəsm")) {
+                aiSuggestion = "💡 Bu mövzu üçün ən uyğun AI: <strong>Midjourney</strong> və ya <strong>DALL·E</strong> (şəkil/dizayn yaradılması).";
+            } 
+            else if (input.includes("proqram") || input.includes("kod") || input.includes("vscode") || input.includes("flask")) {
+                aiSuggestion = "🧠 Bu mövzu üçün ən uyğun AI: <strong>ChatGPT</strong> və ya <strong>Claude</strong> (proqramlaşdırma və kod yazmaq üçün).";
+            } 
+            else if (input.includes("söhbət") || input.includes("müzakirə") || input.includes("suallar") || input.includes("danışıq")) {
+                aiSuggestion = "💬 Bu mövzu üçün ən uyğun AI: <strong>ChatGPT</strong> (ünsiyyət və ideya mübadiləsi üçün).";
+            } 
+            else if (input.includes("şəkil") || input.includes("foto") || input.includes("art")) {
+                aiSuggestion = "🎨 Bu mövzu üçün ən uyğun AI: <strong>Midjourney</strong>, <strong>DALL·E</strong> və ya <strong>Leonardo AI</strong>.";
+            } 
+            else {
+                aiSuggestion = "🤔 Bu mövzuya uyğun AI tapılmadı. Zəhmət olmasa daha dəqiq yazın.";
+            }
+
+            resultBox.innerHTML = `
+                <p><strong>Zeka AI:</strong> Bu suala cavab hazırda demo rejimindədir. 😊</p>
+                <p>${aiSuggestion}</p>
+            `;
         }
     </script>
-</body>
-</html>
-
-  </script>
-</body>
-</html>
-
-  </script>
-</body>
-</html>
-
-</p>
-    </div>
-  </div>
-
-  <footer>
-    <p>Made with 💜 from Innova Group</p>
-  </footer>
-
-  <script src="script.js"></script>
-    <a href="mailto:jeselemana299@gmail.com" class="email-bubble" title="Təkliflərinizi yazın 💌">✉️</a>
-</body>
-
 </body>
 </html>
