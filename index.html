@@ -1,28 +1,69 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🤖 AI Məsləhətçi</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeka AI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="glow">🤖 AI Məsləhətçi</h1>
-    <p class="subtitle">Mövzunu yaz və sənə uyğun ən yaxşı AI saytını tap:</p>
+    <div class="container">
+        <h1 id="greeting">Zeka AI</h1>
+        <h2>Fikirləriniz üçün ağıllı köməkçi 🤖</h2>
 
-    <div class="input-area">
-      <input type="text" id="topic" placeholder="məs: dizayn, proqramlaşdırma, dil öyrənmək">
-      <button id="getAdvice">✨ Tap</button>
+        <input type="text" id="userInput" placeholder="Bir sual yazın...">
+        <button onclick="getAdvice()">Soruş</button>
+
+        <div class="result" id="resultBox"></div>
     </div>
 
-    <div id="result" class="hidden">
-      <h2 id="aiName"></h2>
-      <p id="aiDescription"></p>
-      <a id="aiLink" href="#" target="_blank">🌐 Sayta keç</a>
-      <p id="marketifyText" class="hidden">
-  Peşəkar məsləhət almaq istəyirsən?
-  <a id="marketifyLink" href="https://marketifym.wixstudio.com/marketify" target="_blank">Marketify-a müraciət et!</a>
+    <div class="footer">
+        © 2025 <span>Zeka AI</span> — Ağıllı gələcək üçün
+    </div>
+
+    <a href="mailto:info@zeka.ai" class="email-bubble">✉️</a>
+
+    <script>
+        // ⏰ Vaxta görə salam
+        const hour = new Date().getHours();
+        let greetingText = "Hər vaxtınız xeyir";
+
+        if (hour >= 5 && hour < 12) {
+            greetingText = "Sabahınız xeyir 🌅";
+        } else if (hour >= 12 && hour < 18) {
+            greetingText = "Günortanız xeyir ☀️";
+        } else if (hour >= 18 && hour < 24) {
+            greetingText = "Axşamınız xeyir 🌇";
+        } else {
+            greetingText = "Hər vaxtınız xeyir 🌙";
+        }
+
+        document.getElementById("greeting").innerText = `${greetingText}, bu Zeka AI-dır 🤖`;
+
+        // 🧠 Sadə cavab funksiyası (demo məqsədi ilə)
+        function getAdvice() {
+            const input = document.getElementById("userInput").value.trim();
+            const resultBox = document.getElementById("resultBox");
+
+            if (input === "") {
+                resultBox.innerHTML = "<p>Zəhmət olmasa bir sual yazın 💬</p>";
+                return;
+            }
+
+            resultBox.innerHTML = `<p><strong>Zeka AI:</strong> Bu suala cavab hazırda demo rejimindədir. 😊</p>`;
+        }
+    </script>
+</body>
+</html>
+
+  </script>
+</body>
+</html>
+
+  </script>
+</body>
+</html>
+
 </p>
     </div>
   </div>
